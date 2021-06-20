@@ -31,7 +31,8 @@ class LanguagePack::Ruby < LanguagePack::Base
   end
 
   def self.bundler
-    @@bundler ||= LanguagePack::Helpers::BundlerWrapper.new.install
+    fetcher = LanguagePack::Fetcher.new("https://pointcom-ruby-buildpack.s3.amazonaws.com")
+    @@bundler ||= LanguagePack::Helpers::BundlerWrapper.new(fetcher: fetcher).install
   end
 
   def bundler
